@@ -7,7 +7,6 @@ public class App extends PApplet {
 
     private final int WIDTH = 800, HEIGHT = 600;
 
-
     private Scene scene = new BallsScene(this);
 
     @Override

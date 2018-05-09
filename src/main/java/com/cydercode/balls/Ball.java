@@ -3,6 +3,7 @@ package com.cydercode.balls;
 import com.cydercode.Updatable;
 import com.cydercode.Vector2F;
 import com.cydercode.VisibleObject;
+import com.cydercode.color.Color;
 import processing.core.PApplet;
 
 public class Ball extends VisibleObject implements Updatable {
@@ -11,15 +12,17 @@ public class Ball extends VisibleObject implements Updatable {
 
     private long startTimestamp = System.currentTimeMillis();
 
-    public Ball(PApplet pApplet, Vector2F position) {
+    protected Color color;
+
+    public Ball(PApplet pApplet, Vector2F position, Color color) {
         super(pApplet, position);
+        this.color = color;
     }
 
     @Override
     public void render() {
-        float v1 = getLife() / 100f * 255;
-        pApplet.fill(v1, v1, v1);
-        pApplet.ellipse(position.getX(), position.getY(), 20, 20);
+        pApplet.fill(getLife() / 100f * color.getR(), getLife() / 100f * color.getG(), getLife() / 100f * color.getB());
+        pApplet.ellipse(position.getX(), position.getY(), getLife(), getLife());
     }
 
     @Override
@@ -31,6 +34,10 @@ public class Ball extends VisibleObject implements Updatable {
 
         if (position.getY() < 0 || position.getY() >= pApplet.height) {
             movVec.invertY();
+        }
+
+        if (getLife() < 0) {
+            remove();
         }
     }
 

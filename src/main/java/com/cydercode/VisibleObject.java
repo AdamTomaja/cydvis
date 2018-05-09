@@ -2,7 +2,7 @@ package com.cydercode;
 
 import processing.core.PApplet;
 
-public abstract class VisibleObject extends AbstractObject {
+public abstract class VisibleObject extends AbstractObject implements Renderable {
 
     protected Vector2F position;
 

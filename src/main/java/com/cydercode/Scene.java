@@ -3,11 +3,9 @@ package com.cydercode;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-public abstract class Scene extends AbstractObject implements Updatable {
+public abstract class Scene extends AbstractObject implements Updatable, Renderable {
 
     protected List<VisibleObject> objects = new ArrayList<>();
 
@@ -37,6 +35,10 @@ public abstract class Scene extends AbstractObject implements Updatable {
         copy.forEach(obj -> {
             if (obj instanceof Updatable) {
                 ((Updatable) obj).update();
+            }
+
+            if (obj.isShouldBeRemoved()) {
+                objects.remove(obj);
             }
         });
     }
