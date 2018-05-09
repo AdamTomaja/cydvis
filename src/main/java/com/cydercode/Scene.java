@@ -5,9 +5,9 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Scene extends AbstractObject implements Updatable, Renderable {
+public class Scene extends AbstractObject implements Updatable, Renderable {
 
-    protected List<VisibleObject> objects = new ArrayList<>();
+    protected List<AbstractObject> objects = new ArrayList<>();
 
     public Scene(PApplet pApplet) {
         super(pApplet);
@@ -16,20 +16,16 @@ public abstract class Scene extends AbstractObject implements Updatable, Rendera
     @Override
     public void render() {
         pApplet.background(0, 0, 0);
-        objects.forEach(obj -> obj.render());
-
-        pApplet.textSize(15);
-        renderUI();
+        objects.stream()
+                .filter(Renderable.class::isInstance)
+                .map(Renderable.class::cast)
+                .forEach(obj -> obj.render());
     }
 
-    private void renderUI() {
-        pApplet.fill(150, 150, 150);
-        pApplet.text("Objects: " + objects.size(), 10, 30);
-    }
 
     @Override
     public void update() {
-        List<VisibleObject> copy = new ArrayList<>();
+        List<AbstractObject> copy = new ArrayList<>();
         copy.addAll(objects);
 
         copy.forEach(obj -> {
@@ -43,7 +39,11 @@ public abstract class Scene extends AbstractObject implements Updatable, Rendera
         });
     }
 
-    public void addObject(VisibleObject object) {
+    public void addObject(AbstractObject object) {
         objects.add(object);
+    }
+
+    public int getObjectsCount() {
+        return objects.size();
     }
 }

@@ -5,7 +5,7 @@ import processing.core.PApplet;
 
 public class App extends PApplet {
 
-    private final int WIDTH = 800, HEIGHT = 600;
+    private final int WIDTH = 1600, HEIGHT =1000;
 
     private Scene scene = new BallsScene(this);
 

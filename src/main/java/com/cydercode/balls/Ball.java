@@ -21,6 +21,7 @@ public class Ball extends VisibleObject implements Updatable {
 
     @Override
     public void render() {
+        pApplet.stroke(color.getR(), color.getG(), color.getB());
         pApplet.fill(getLife() / 100f * color.getR(), getLife() / 100f * color.getG(), getLife() / 100f * color.getB());
         pApplet.ellipse(position.getX(), position.getY(), getLife(), getLife());
     }
