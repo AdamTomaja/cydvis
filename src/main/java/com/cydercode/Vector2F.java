@@ -38,4 +38,9 @@ public class Vector2F {
         x += vector2F.x;
         y += vector2F.y;
     }
+
+    public void set(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 }
