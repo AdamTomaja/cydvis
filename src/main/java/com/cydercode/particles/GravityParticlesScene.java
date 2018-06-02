@@ -14,6 +14,8 @@ public class GravityParticlesScene extends Scene {
 
     private List<Vector2F> particles = new ArrayList<>();
 
+    float gravityVec = 0.1f;
+
     Timer timer = new Timer(pApplet, 10, () -> {
         System.out.println("Count: " + particles.size());
         particles.add(new Vector2F((float) (Math.random() * pApplet.getWidth() / 2), 0));
@@ -33,10 +35,20 @@ public class GravityParticlesScene extends Scene {
             if(particle.getY() > pApplet.getHeight()) {
                 particle.setY(0);
             }
+
+            if(particle.getY() < -5) {
+                particle.setY(pApplet.getHeight());
+            }
         });
 
         if(particles.size() > 5000) {
             timer.remove();
+        }
+
+        gravity += gravityVec;
+
+        if(gravity > 60 || gravity < -30) {
+            gravityVec *= -1;
         }
     }
 
