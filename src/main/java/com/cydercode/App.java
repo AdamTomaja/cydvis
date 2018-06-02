@@ -1,6 +1,7 @@
 package com.cydercode;
 
 import com.cydercode.balls.BallsScene;
+import com.cydercode.particles.GravityParticlesScene;
 import com.cydercode.particles.ParticlesScene;
 import com.cydercode.rectsandlines.NattiScene;
 import processing.core.PApplet;
@@ -9,7 +10,7 @@ public class App extends PApplet {
 
     private final int WIDTH = 800, HEIGHT = 600;
 
-    private Scene scene = new ParticlesScene(this);
+    private Scene scene = new GravityParticlesScene(this);
 
     @Override
     public void setup() {
